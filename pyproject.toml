@@ -30,7 +30,7 @@ dev = [
     "tox-uv>=1.33.4",
     "deptry>=0.25.1",
     "ty>=0.0.24",
-    
+
     "ruff>=0.15.7",
 ]
 
@@ -98,5 +98,3 @@ ignore = [
 
 [tool.ruff.format]
 preview = true
-
-
