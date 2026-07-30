@@ -1,74 +1,94 @@
 # plotwright
 
-[![Release](https://img.shields.io/github/v/release/AdamHallengreen/plotwright)](https://img.shields.io/github/v/release/AdamHallengreen/plotwright)
+[![Release](https://img.shields.io/github/v/release/AdamHallengreen/plotwright)](https://github.com/AdamHallengreen/plotwright/releases)
 [![Build status](https://img.shields.io/github/actions/workflow/status/AdamHallengreen/plotwright/main.yml?branch=main)](https://github.com/AdamHallengreen/plotwright/actions/workflows/main.yml?query=branch%3Amain)
-[![codecov](https://codecov.io/gh/AdamHallengreen/plotwright/branch/main/graph/badge.svg)](https://codecov.io/gh/AdamHallengreen/plotwright)
-[![Commit activity](https://img.shields.io/github/commit-activity/m/AdamHallengreen/plotwright)](https://img.shields.io/github/commit-activity/m/AdamHallengreen/plotwright)
-[![License](https://img.shields.io/github/license/AdamHallengreen/plotwright)](https://img.shields.io/github/license/AdamHallengreen/plotwright)
+[![Commit activity](https://img.shields.io/github/commit-activity/m/AdamHallengreen/plotwright)](https://github.com/AdamHallengreen/plotwright/commits/main)
+[![License](https://img.shields.io/github/license/AdamHallengreen/plotwright)](LICENSE)
 
-Tools for plotting.
+A small matplotlib companion for consistent, presentable figures: a composable color/linestyle/
+marker theme system, and a `FigureSaver` for exporting whole figures or single cropped subplots at
+a fixed, reproducible size.
 
 - **Github repository**: <https://github.com/AdamHallengreen/plotwright/>
-- **Documentation** <https://AdamHallengreen.github.io/plotwright/>
 
-## Getting started with your project
-
-### 1. Create a New Repository
-
-First, create a repository on GitHub with the same name as this project, and then run the following commands:
+## Installation
 
 ```bash
-git init -b main
-git add .
-git commit -m "init commit"
-git remote add origin git@github.com:AdamHallengreen/plotwright.git
-git push -u origin main
+pip install plotwright
 ```
 
-### 2. Set Up Your Development Environment
-
-Then, install the environment and the pre-commit hooks with
+or, with [uv](https://docs.astral.sh/uv/):
 
 ```bash
-make install
+uv add plotwright
 ```
 
-This will also generate your `uv.lock` file
+## Quickstart
 
-### 3. Run the pre-commit hooks
+```python
+import matplotlib.pyplot as plt
+from plotwright import FigureSaver, apply_theme
 
-Initially, the CI/CD pipeline might be failing due to formatting issues. To resolve those run:
+apply_theme("vibrant", base="paper")  # both are defaults; shown here for clarity
 
-```bash
-uv run pre-commit run -a
+fig, ax = plt.subplots()
+ax.plot([0, 1, 2], [0, 1, 4], label="series 1")
+ax.legend()
+
+FigureSaver("figures").save_figure(fig, "example.png")
 ```
 
-### 4. Commit the changes
+`apply_theme` sets matplotlib `rcParams` for the rest of the session -- scope it to one figure with
+`plt.rc_context()` if you need more than one theme active side by side. `FigureSaver` handles
+writing figures to disk at a consistent size.
 
-Lastly, commit the changes made by the two steps above to your repository.
+## Palettes, bases, linestyles & markers
 
-```bash
-git add .
-git commit -m 'Fix formatting issues'
-git push origin main
+`apply_theme(palette=, *, base=, linestyle=, marker=, ...)` layers a base theme with a color cycle,
+and optionally a linestyle/marker cycle alongside it. Every name below is also available
+programmatically, so you're never guessing:
+
+```python
+from plotwright import list_bases, list_palettes, list_linestyle_sets, list_marker_sets
+
+list_bases()            # ('paper', 'presentation')
+list_palettes()         # ('fishy', 'ggplot2', 'ibm', 'okabe_ito', 'petroff10', ...)
+list_linestyle_sets()   # ('basic',)
+list_marker_sets()      # ('basic',)
 ```
 
-You are now ready to start development on your project!
-The CI/CD pipeline will be triggered when you open a pull request, merge to main, or when you create a new release.
+| `base=`               | Use case                                     |
+| --------------------- | --------------------------------------------- |
+| `paper` (default)     | Print/PDF figures -- compact, serif           |
+| `presentation`        | On-screen slides -- larger scale, sans-serif  |
 
-To finalize the set-up for publishing to PyPI, see [here](https://fpgmaas.github.io/cookiecutter-uv/features/publishing/#set-up-for-pypi).
-For activating the automatic documentation with MkDocs/Zensical, see [here](https://fpgmaas.github.io/cookiecutter-uv/features/docs_tool/#deploying-to-github-pages).
-To enable the code coverage reports, see [here](https://fpgmaas.github.io/cookiecutter-uv/features/codecov/).
+Palettes (`palette=`): `vibrant` (default), `fishy`, `ggplot2`, `ibm`, `okabe_ito`, `petroff10`,
+`seaborn_deep`, `tab10`, `tol_bright`, `tol_muted`. Linestyle sets and marker sets
+(`linestyle=`/`marker=`): `basic`. Preview a palette's actual colors without applying it via
+`palette_colors("vibrant")`.
 
-## Releasing a new version
+Pass your own colors instead of a named palette with `colors=[...]` (a list of hex strings), and
+layer extra `rcParams` on top with `extra_rc=` (a dict, or a path to another `.mplstyle` file). See
+[`notebooks/demo.ipynb`](notebooks/demo.ipynb) for a runnable tour of every option, including a
+side-by-side swatch of all palettes, `sequential=`, and `latex=True`.
 
-- Create an API Token on [PyPI](https://pypi.org/).
-- Add the API Token to your projects secrets with the name `PYPI_TOKEN` by visiting [this page](https://github.com/AdamHallengreen/plotwright/settings/secrets/actions/new).
-- Create a [new release](https://github.com/AdamHallengreen/plotwright/releases/new) on Github.
-- Create a new tag in the form `*.*.*`.
+## Saving figures
 
-For more details, see [here](https://fpgmaas.github.io/cookiecutter-uv/features/cicd/#how-to-trigger-a-release).
+```python
+saver = FigureSaver("figures", dpi=300)
 
----
+saver.save_figure(fig, "whole_figure.png")                        # fixed size, no tight bbox
+saver.save_subplot(fig, ax, "one_panel.png")                       # cropped to that axes' tight bbox
+saver.save_subplots_aligned(fig, [ax1, ax2], ["a.png", "b.png"])   # cropped to a common width
+```
 
-Repository initiated with [osprey-oss/cookiecutter-uv](https://github.com/osprey-oss/cookiecutter-uv).
+Use `mark_rasterized(*artists)` to rasterize dense scatter/heatmap artists before saving to a
+vector format (pdf/eps/ps) -- keeps text and axes vector while the heavy artist becomes a bitmap.
+
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md).
+
+## License
+
+MIT -- see [LICENSE](LICENSE).

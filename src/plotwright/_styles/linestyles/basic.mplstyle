@@ -1,0 +1,2 @@
+# basic -- linestyle set.
+axes.prop_cycle: cycler('linestyle', ['-', '-', '-', '--', '--', '--', '-.', '-.', '-.', ':', ':', ':'])

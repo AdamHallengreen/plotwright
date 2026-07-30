@@ -1,0 +1,2 @@
+# ggplot2 default -- color scheme.
+axes.prop_cycle: cycler('color', ['F8766D', '00BFC4', 'CD9600', '7CAE00', '00BE67', '00A9FF', 'C77CFF', 'FF61CC'])

@@ -1,0 +1,2 @@
+# ibm -- 8 color scheme with grey last.
+axes.prop_cycle: cycler('color', ['dc267f', '648fff', 'ffb000', 'fe6100', '785ef0', '000000', 'cccccc'])

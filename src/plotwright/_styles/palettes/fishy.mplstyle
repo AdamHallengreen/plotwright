@@ -1,0 +1,2 @@
+# fishy -- color scheme.
+axes.prop_cycle: cycler('color', ['ef6f6a', '6388b4', 'ffae34', '8cc2ca', 'c3bc3f', '55ad89', 'bb7693', 'baa094', '767676'])

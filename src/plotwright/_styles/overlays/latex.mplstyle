@@ -1,0 +1,16 @@
+## ===========================================================================
+## LaTeX overlay (lightweight tier) — layer LAST, after a theme and a
+## palette (and optional linestyle/marker set):
+##
+##     plt.style.use(['themes/paper.mplstyle', 'palettes/vibrant.mplstyle', 'overlays/latex.mplstyle'])
+##
+## Approximates a Computer Modern / Latin Modern LaTeX document without a TeX
+## dependency (no text.usetex, no pgf backend): serif text and CM mathtext, with
+## numeric tick/offset labels rendered as math. Sets no axes.prop_cycle, so it
+## composes cleanly on top of any palette.
+## ===========================================================================
+font.family:                 serif
+mathtext.fontset:            cm
+mathtext.default:            regular
+axes.formatter.use_mathtext: True
+axes.unicode_minus:          True

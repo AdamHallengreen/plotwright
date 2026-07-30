@@ -1,0 +1,8 @@
+# basic -- marker set.
+#
+# NOTE: matplotlib's .mplstyle parser coerces a bare-digit marker string like
+# '8' to the integer 8 (a *different* glyph, CARETLEFTBASE, not the octagon).
+# If you add markers to a set like this one, avoid bare-digit strings, or
+# substitute a lookalike -- here 'H' (filled hexagon2) stands in for '8'
+# (octagon), the closest unused filled polygon.
+axes.prop_cycle: cycler('marker', ['o', 's', 'D', '^', 'v', 'x', 'p', 'h', 'H', '*', 'P', 'X'])

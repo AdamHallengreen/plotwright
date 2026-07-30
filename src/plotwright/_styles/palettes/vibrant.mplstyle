@@ -1,0 +1,2 @@
+# vibrant -- color scheme.
+axes.prop_cycle: cycler('color', ['EF476F', '1082A8', 'ee7733', '33bbee', 'cc3311', '009988', 'bbbbbb'])

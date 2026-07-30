@@ -1,0 +1,2 @@
+# tol_muted -- color scheme.
+axes.prop_cycle: cycler('color', ['CC6677', '332288', 'DDCC77', '117733', '88CCEE', '882255', '44AA99', '999933', 'AA4499'])

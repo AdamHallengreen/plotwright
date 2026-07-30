@@ -6,6 +6,10 @@ authors = [{ name = "Adam Hallengreen", email = "adam.hallengreen@hotmail.dk" }]
 readme = "README.md"
 keywords = ['python']
 requires-python = ">=3.10,<4.0"
+dependencies = [
+    "matplotlib>=3.8",
+    "cycler>=0.11",
+]
 classifiers = [
     "Intended Audience :: Developers",
     "Programming Language :: Python",
@@ -19,9 +23,8 @@ classifiers = [
 ]
 
 [project.urls]
-Homepage = "https://AdamHallengreen.github.io/plotwright/"
+Homepage = "https://github.com/AdamHallengreen/plotwright"
 Repository = "https://github.com/AdamHallengreen/plotwright"
-Documentation = "https://AdamHallengreen.github.io/plotwright/"
 
 [dependency-groups]
 dev = [
@@ -32,6 +35,7 @@ dev = [
     "ty>=0.0.24",
 
     "ruff>=0.15.7",
+    "ipykernel>=6.29",
 ]
 
 [build-system]

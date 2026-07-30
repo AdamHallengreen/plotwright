@@ -1,0 +1,139 @@
+## ===========================================================================
+## Paper theme — every relevant rcParam stated explicitly. Sized and scaled
+## for print/PDF figures (serif text, compact sizing). See
+## themes/presentation.mplstyle for a larger-scale alternative meant for
+## on-screen slides.
+##
+## axes.prop_cycle is intentionally NOT set here. Layer a palette (and
+## optionally a linestyle/marker set) on top -- apply_theme() does this for
+## you, or compose the files directly:
+##
+##     plt.style.use(['themes/paper.mplstyle', 'palettes/vibrant.mplstyle'])
+##
+## The theme always comes first; a color/linestyle/marker file only sets
+## axes.prop_cycle. Hex colors in an .mplstyle file must omit the leading '#'
+## (it starts a comment); grayscale floats like 0.15 are written as-is.
+## ===========================================================================
+
+## --- Lines & markers -------------------------------------------------------
+lines.linewidth:            2
+lines.linestyle:            -
+lines.marker:               None
+lines.markersize:           6
+lines.markeredgewidth:      0.5
+lines.solid_capstyle:       round
+lines.solid_joinstyle:      round
+lines.dash_capstyle:        round
+lines.antialiased:          True
+
+## --- Patches ---------------------------------------------------------------
+patch.linewidth:            0.8
+patch.facecolor:            0.15
+patch.edgecolor:            0.15
+patch.force_edgecolor:      False
+patch.antialiased:          True
+
+## --- Font ------------------------------------------------------------------
+font.family:                serif
+font.style:                 normal
+font.weight:                normal
+font.size:                  10
+mathtext.fontset:           dejavuserif
+
+## --- Text ------------------------------------------------------------------
+text.color:                 0.15
+text.usetex:                False
+
+## --- Axes ------------------------------------------------------------------
+axes.facecolor:             white
+axes.edgecolor:             0.15
+axes.linewidth:             0.8
+axes.grid:                  True
+axes.grid.axis:             y
+axes.grid.which:            major
+axes.titlesize:             11
+axes.titleweight:           normal
+axes.titlepad:              6.0
+axes.labelsize:             10
+axes.labelweight:           normal
+axes.labelcolor:            0.15
+axes.labelpad:              4.0
+axes.axisbelow:             True
+axes.unicode_minus:         True
+axes.autolimit_mode:        data
+axes.xmargin:               0.05
+axes.ymargin:               0.05
+axes.spines.top:            False
+axes.spines.right:          False
+axes.spines.left:           True
+axes.spines.bottom:         True
+
+## --- Grid ------------------------------------------------------------------
+grid.color:                 0.15
+grid.linestyle:             dotted
+grid.linewidth:             0.5
+grid.alpha:                 1.0
+
+## --- X ticks ---------------------------------------------------------------
+xtick.top:                  False
+xtick.bottom:               True
+xtick.direction:            out
+xtick.color:                0.15
+xtick.labelsize:            9
+xtick.major.size:           4
+xtick.major.width:          0.8
+xtick.major.pad:            3.5
+xtick.minor.visible:        False
+xtick.minor.size:           2
+xtick.minor.width:          0.5
+
+## --- Y ticks ---------------------------------------------------------------
+ytick.left:                 True
+ytick.right:                False
+ytick.direction:            out
+ytick.color:                0.15
+ytick.labelsize:            9
+ytick.major.size:           4
+ytick.major.width:          0.8
+ytick.major.pad:            3.5
+ytick.minor.visible:        False
+ytick.minor.size:           2
+ytick.minor.width:          0.5
+
+## --- Legend ----------------------------------------------------------------
+legend.frameon:             False
+legend.fontsize:            9
+legend.loc:                 best
+legend.numpoints:           1
+legend.scatterpoints:       1
+legend.markerscale:         1.0
+legend.borderpad:           0.4
+legend.labelspacing:        0.5
+legend.handlelength:        2.0
+legend.handletextpad:       0.8
+legend.columnspacing:       2.0
+
+## --- Figure ----------------------------------------------------------------
+figure.facecolor:           white
+figure.edgecolor:           white
+figure.figsize:             7.27, 4.5
+figure.dpi:                 100
+figure.titlesize:           12
+figure.titleweight:         normal
+figure.constrained_layout.use: True
+
+## --- Saving ----------------------------------------------------------------
+## Approach (a): no tight bbox here. Whitespace is removed at draw time by
+## constrained layout (above), and figures save at their fixed designed size
+## so widths are byte-exact across figures. FigureSaver.save_subplot passes an
+## explicit inches Bbox when it needs a cropped panel.
+savefig.dpi:                300
+savefig.facecolor:          white
+savefig.edgecolor:          white
+savefig.pad_inches:         0.0
+savefig.format:             pdf
+
+## --- Errorbars & scatter ---------------------------------------------------
+errorbar.capsize:           3
+scatter.marker:             o
+scatter.edgecolors:         face

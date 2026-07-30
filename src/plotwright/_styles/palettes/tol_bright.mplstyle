@@ -1,0 +1,2 @@
+# tol_bright -- color scheme.
+axes.prop_cycle: cycler('color', ['EE6677', '4477AA', '228833', 'CCBB44', '66CCEE', 'AA3377', 'BBBBBB'])
