@@ -1,0 +1,2 @@
+# RColorBrewer Accent -- color scheme.
+axes.prop_cycle: cycler('color', ['F0027FFF', '386CB0FF', 'FDC086FF', '7FC97FFF', 'BEAED4FF', 'FFFF99FF', 'BF5B17FF', '666666FF'])

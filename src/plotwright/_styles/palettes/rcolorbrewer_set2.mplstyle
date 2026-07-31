@@ -1,0 +1,2 @@
+# RColorBrewer Set 2 -- color scheme.
+axes.prop_cycle: cycler('color', ['FC8D62FF', '8DA0CBFF', '66C2A5FF', 'E78AC3FF', 'A6D854FF', 'FFD92FFF', 'E5C494FF', 'B3B3B3FF'])
